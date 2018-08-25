@@ -1,0 +1,110 @@
+from decimal import Decimal
+qty = decimal 
+price = MoneyField
+
+price = models.DecimalField(decimal_places=2, max_digits=20) 
+sale_price = models.DecimalField(decimal_places=2, max_digits=20, null=True, blank=True) 
+
+<img alt="New TV and movies coming soon to Prime" src="https://images-na.ssl-images-amazon.com/images/G/01/digital/video/merch/2018/Other/AVD11773_ComingSoon_June/AmazonGW_DesktopHero_AVD_11773_ComingSoon_June_1500x300_EN_v1._CB477626144_.jpg" height="300px" width="1500px" data-a-hires="https://images-na.ssl-images-amazon.com/images/G/01/digital/video/merch/2018/Other/AVD11773_ComingSoon_June/AmazonGW_DesktopHero_AVD_11773_ComingSoon_June_3000x600_EN_v1._CB477626147_.jpg">
+
+
+<img alt="Men's everyday sunglasses" src="https://images-na.ssl-images-amazon.com/images/G/01/AMAZON_FASHION/2018/EDITORIAL/SUMMER_1/GATEWAY/DESKTOP/HERO_M_S_Sunglasses_1x._CB495098700_.jpg" height="300px" width="1500px" data-a-hires="https://images-na.ssl-images-amazon.com/images/G/01/AMAZON_FASHION/2018/EDITORIAL/SUMMER_1/GATEWAY/DESKTOP/HERO_M_S_Sunglasses_2x._CB495098700_.jpg">
+
+
+
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/2uLYO1LUf6Q" frameborder="0" allowfullscreen></iframe>
+
+
+var img = $(".variation_select option:selected").attr("data-img")
+    $("img").attr("src", img);
+
+<h4 id='sale-price'>{{ object.sale_price }}</h4>
+
+<option data-img="/media/products/1.jpg" data-price="{{ vari_obj.price }}" value="{{ vari_obj.id }}">{{ vari_obj }}</option>
+
+<script>
+{% block jquery %}
+
+var price = $(".variation_select option:selected").attr("data-price")
+$("#price").text(price);
+
+$(".variation_select").change(function(){
+var price = $(".variation_select option:selected").attr("data-price")
+
+var sale_price = $(".variation_select option:selected").attr("data-sale-price")
+if (sale_price != "") {
+$("#price").text(sale_price + " " + price);
+} else {
+$("#price").text(price);
+}
+
+
+})
+
+{% endblock %}
+</script>
+
+-----------------------------------------------------------------------------------------------------------------------------------
+
+<script>
+{% block jquery %}
+
+function setPrice(){
+var price = $(".variation_select option:selected").attr("data-price")
+
+var sale_price = $(".variation_select option:selected").attr("data-sale-price")
+if (sale_price != "") {
+$("#price").text(sale_price + " " + price);
+} else {
+$("#price").text(price);
+}
+}
+setPrice()
+
+$(".variation_select").change(function(){
+setPrice()
+
+}) 
+{% endblock %}
+</script>
+
+--------------------------------------------------------------------------------------------
+
+class PurchaseOrder(models.Model):
+    price = models.FloatField()
+
+    @property
+    def dollar_amount(self):
+        return "$%s" % self.price if self.price else ""
+and reference dollar_amount instead of price
+
+Another way
+
+Add it in the PurchaseOrderAdmin
+
+class PurchaseOrderAdmin(admin.ModelAdmin):
+    fields = ['product', 'price', 'purchase_date', 'confirmed']
+    list_display = ('product', 'dollar_amount', 'purchase_date', 'confirmed', 'po_number')
+
+    def dollar_amount(self, obj):
+        return "$%s" % obj.price if obj.price else ""
+
+
+admin.site.register(PurchaseOrder, PurchaseOrderAdmin)
+
+----------------------------------------------------------------------------------------------------
+
+result = braintree.Transaction.sale({
+    "amount": "10.00",
+    "payment_method_token": the_token,
+    "payment_method_nonce": nonce,
+    "options": {
+        "submit_for_settlement": True
+    }
+})
+
+
+
+
+

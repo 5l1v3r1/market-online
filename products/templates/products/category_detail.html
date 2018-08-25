@@ -1,0 +1,21 @@
+{% extends "base.html" %}  
+
+{% block content %} 
+
+<h3>{{ object }}</h3> 
+
+<div class='row'>
+{% for product in products %} 
+
+<div class='col-xs-2'>
+{% include "products/product_thumbnail.html" with product=product price="True" %}
+</div>
+{% cycle '' '' '' '' ''  '</div></hr><div class="row">' %}
+
+{% endfor %} 
+
+
+</div>
+
+
+{% endblock %} 
