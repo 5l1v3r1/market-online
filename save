@@ -1,3 +1,5 @@
+ https://fast-thicket-70225.herokuapp.com/
+
 from decimal import Decimal
 qty = decimal 
 price = MoneyField
