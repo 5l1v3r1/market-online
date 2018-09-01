@@ -225,6 +225,8 @@ class CheckoutFinalView(CartOrderMixin, View):
 					"submit_for_settlement": True
 				}
 			})
+			print result
+
 			if result.is_success: 
 
 				order.mark_completed(order_id=result.transaction.id) 

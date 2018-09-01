@@ -3,6 +3,7 @@ from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.db import models 
 from django.db.models.signals import pre_save, post_save
+from django.contrib.auth.signals import user_logged_in 
 
 # Create your models here. 
 from carts.models import Cart 
@@ -36,7 +37,8 @@ class UserCheckout(models.Model):
 			result = braintree.Customer.create({
 				"email": instance.email,
 			}) 
-			
+			print result
+
 			if result.is_success:
 				instance.braintree_id = result.customer.id 
 				instance.save() 
@@ -49,6 +51,8 @@ class UserCheckout(models.Model):
 			client_token = braintree.ClientToken.generate({
 				"customer_id": customer_id
 			})
+			print client_token
+
 			return client_token 
 		return None
 
