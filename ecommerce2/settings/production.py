@@ -37,7 +37,7 @@ if not settings.DEBUG:
 	DEBUG = False
 
 	ADMINS = (
-		("Justin", "codingforentrepreneurs@gmail.com"),
+		("Geoffroy", "sakbayeme2015@gmail.com"),
 
 		)
 
