@@ -35,6 +35,7 @@
             <li><a href="{% url 'auth_logout' %}">Logout</a></li>
             {% else %}
             <li><a href="{% url 'registration_register' %}">Register</a></li>
+             <li><a href="#">Accounts</a></li>
             
              {% if not request.user.is_authenticated and not "/accounts/login" in request.get_full_path %}
               <li class="dropdown">
